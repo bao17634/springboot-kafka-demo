@@ -23,6 +23,7 @@ public class EventPublishSchedule {
 
 	/**
 	 * 每N毫秒执行一次
+	 * 每隔一段时间查询本地消息记录表
 	 */
 	@Scheduled(fixedRate = 5000)
 	public void publish() {

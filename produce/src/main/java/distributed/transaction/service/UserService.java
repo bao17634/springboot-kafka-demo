@@ -26,7 +26,6 @@ public class UserService {
 	@Transactional(rollbackFor = Exception.class)
 	public void addUser(User user) {
 		Integer a=userMapper.save(user);
-
 		EventPublish eventPublish = new EventPublish();
 		eventPublish.setEventType(EventType.USER_CREATED);
 		eventPublish.setPayload(new Gson().toJson(user));

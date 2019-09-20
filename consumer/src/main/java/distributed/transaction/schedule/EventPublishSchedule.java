@@ -1,6 +1,5 @@
 package distributed.transaction.schedule;
 
-import distributed.transaction.service.EventPublishService;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,15 +19,15 @@ public class EventPublishSchedule {
 
 	private final static Logger LOGGER = LoggerFactory.getLogger(EventPublishSchedule.class);
 
-	@Resource
-	private EventPublishService eventPublishService;
+//	@Resource
+//	private EventPublishService eventPublishService;
 
 	/**
 	 * 每N毫秒执行一次
 	 */
 	@Scheduled(fixedRate = 5000)
 	public void publish() {
-		LOGGER.debug("EventPublishSchedule execute.");
-		eventPublishService.publish();
+//		LOGGER.debug("EventPublishSchedule execute.");
+//		eventPublishService.publish();
 	}
 }

@@ -19,7 +19,6 @@ public class UserService {
 
 	@Resource
 	private UserMapper userMapper;
-
 	@Resource
 	private EventPublishMapper eventPublishMapper;
 
@@ -30,6 +29,7 @@ public class UserService {
 		eventPublish.setEventType(EventType.USER_CREATED);
 		eventPublish.setPayload(new Gson().toJson(user));
 		eventPublish.setStatus(EventPublishStatus.NEW);
+		//记录待发布事件
 		eventPublishMapper.save(eventPublish);
 	}
 }

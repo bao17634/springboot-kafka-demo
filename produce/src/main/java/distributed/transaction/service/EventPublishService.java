@@ -43,7 +43,6 @@ public class EventPublishService {
 			}
 		}
 	}
-
 	/**
 	 * 发送EventPublish到消息队列
 	 *

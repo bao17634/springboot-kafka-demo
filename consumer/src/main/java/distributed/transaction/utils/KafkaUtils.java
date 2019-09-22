@@ -6,9 +6,6 @@ import org.apache.kafka.clients.consumer.CommitFailedException;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.apache.kafka.clients.producer.Producer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.Properties;
@@ -25,7 +22,6 @@ import java.util.function.Consumer;
 @Slf4j
 public class KafkaUtils {
 	private static KafkaConsumer<String, String> consumer;
-
 	static {
 		//消费者配置
 		Properties consumerProps = new Properties();
@@ -54,6 +50,7 @@ public class KafkaUtils {
 			}
 			try {
 				//同步手动提交offset
+				log.info("消息消费成功！");
 				consumer.commitSync();
 			} catch (CommitFailedException e) {
 				log.error("Kafka消费者提交offset失败", e);

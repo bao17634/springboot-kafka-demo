@@ -56,27 +56,4 @@ public class KafkaUtils {
 	public static void sendSync(String topic, String value) throws ExecutionException, InterruptedException {
 		producer.send(new ProducerRecord<>(topic, value)).get();
 	}
-
-	/**
-	 * 消费消息
-	 *
-	 * @param c 回调函数，处理消息
-	 */
-	public static void consume(Consumer<ConsumerRecord<String, String>> c) {
-		consumer.subscribe(Lists.newArrayList(EventType.USER_CREATED.name()));
-		while (true) {
-			ConsumerRecords<String, String> records = consumer.poll(100);
-			for (ConsumerRecord<String, String> record : records) {
-				LOGGER.debug("接收到消息，ConsumerRecord={}", record);
-				c.accept(record);
-			}
-			try {
-				//同步手动提交offset
-				consumer.commitSync();
-			} catch (CommitFailedException e) {
-				LOGGER.error("Kafka消费者提交offset失败", e);
-			}
-		}
-	}
-
 }
